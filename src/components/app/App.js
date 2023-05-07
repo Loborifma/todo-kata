@@ -10,11 +10,7 @@ export default class App extends React.Component {
   maxId = 100;
 
   state = {
-    tasks: [
-      this.createListItem("Completed task"),
-      this.createListItem("Editing task"),
-      this.createListItem("Active task"),
-    ],
+    tasks: [],
     filter: "All",
   };
 
