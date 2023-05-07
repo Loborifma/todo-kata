@@ -1,8 +1,8 @@
-import React from "react";
-import { formatDistanceToNow } from "date-fns";
-import PropTypes from "prop-types";
+import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
+import PropTypes from 'prop-types';
 
-import "./Task.css";
+import './Task.css';
 
 export default class Task extends React.Component {
   static propTypes = {
@@ -16,22 +16,14 @@ export default class Task extends React.Component {
   };
 
   render() {
-    const {
-      description,
-      onDeleteItem,
-      onToggleStatus,
-      onToggleEditing,
-      onEditingItem,
-      status,
-      editing,
-    } = this.props;
+    const { description, onDeleteItem, onToggleStatus, onToggleEditing, onEditingItem, status, editing } = this.props;
 
-    let isDone = status ? "completed" : "";
+    let isDone = status ? 'completed' : '';
 
     let isEditing = null;
 
     if (editing && !status) {
-      isDone = "editing";
+      isDone = 'editing';
       isEditing = (
         <form
           onSubmit={(evt) => {
@@ -39,12 +31,7 @@ export default class Task extends React.Component {
             onToggleEditing();
           }}
         >
-          <input
-            type="text"
-            className="edit"
-            value={description}
-            onChange={onEditingItem}
-          />
+          <input type="text" className="edit" value={description} onChange={onEditingItem} />
         </form>
       );
     }
@@ -52,12 +39,7 @@ export default class Task extends React.Component {
     return (
       <li className={isDone}>
         <div className="view">
-          <input
-            className="toggle"
-            type="checkbox"
-            checked={status}
-            onChange={onToggleStatus}
-          />
+          <input className="toggle" type="checkbox" checked={status} onChange={onToggleStatus} />
           <label>
             <span className="description">{description}</span>
             <span className="created">{formatDistanceToNow(new Date())}</span>

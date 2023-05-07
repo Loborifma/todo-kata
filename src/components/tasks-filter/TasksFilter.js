@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./TasksFilter.css";
+import './TasksFilter.css';
 
 export default class TasksFilter extends React.Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class TasksFilter extends React.Component {
     const parent = e.target.parentNode.parentNode;
 
     Array.from(parent.children).forEach((e) => {
-      e.firstElementChild.classList.remove("selected");
+      e.firstElementChild.classList.remove('selected');
     });
   };
 

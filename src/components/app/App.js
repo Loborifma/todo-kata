@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import NewTaskForm from "../new-task-form/NewTaskForm";
-import TaskList from "../task-list/TaskList";
-import Footer from "../footer/Footer";
+import NewTaskForm from '../new-task-form/NewTaskForm';
+import TaskList from '../task-list/TaskList';
+import Footer from '../footer/Footer';
 
-import "./App.css";
+import './App.css';
 
 export default class App extends React.Component {
   maxId = 100;
 
   state = {
     tasks: [],
-    filter: "All",
+    filter: 'All',
   };
 
   createListItem(description) {
@@ -40,9 +40,9 @@ export default class App extends React.Component {
 
   filterTasks = (arr, filter) => {
     switch (filter) {
-      case "Active":
+      case 'Active':
         return arr.filter((e) => !e.status);
-      case "Completed":
+      case 'Completed':
         return arr.filter((e) => e.status);
       default:
         return arr;
@@ -62,13 +62,7 @@ export default class App extends React.Component {
   onEditingItem = (e, id) => {
     this.setState(({ tasks }) => {
       return {
-        tasks: this.changeProperty(
-          tasks,
-          id,
-          "description",
-          false,
-          e.target.value
-        ),
+        tasks: this.changeProperty(tasks, id, 'description', false, e.target.value),
       };
     });
   };
@@ -86,7 +80,7 @@ export default class App extends React.Component {
   };
 
   onSpotFilter = (e) => {
-    e.target.classList.add("selected");
+    e.target.classList.add('selected');
     this.setState({
       filter: e.target.innerText,
     });
@@ -103,7 +97,7 @@ export default class App extends React.Component {
   onToggleStatus = (id) => {
     this.setState(({ tasks }) => {
       return {
-        tasks: this.changeProperty(tasks, id, "status", true),
+        tasks: this.changeProperty(tasks, id, 'status', true),
       };
     });
   };
@@ -111,7 +105,7 @@ export default class App extends React.Component {
   onToggleEditing = (id) => {
     this.setState(({ tasks }) => {
       return {
-        tasks: this.changeProperty(tasks, id, "editing", true),
+        tasks: this.changeProperty(tasks, id, 'editing', true),
       };
     });
   };
@@ -133,11 +127,7 @@ export default class App extends React.Component {
             onToggleEditing={this.onToggleEditing}
             onEditingItem={this.onEditingItem}
           />
-          <Footer
-            active={activeCount}
-            onClearCompleted={this.onClearCompleted}
-            onSpotFilter={this.onSpotFilter}
-          />
+          <Footer active={activeCount} onClearCompleted={this.onClearCompleted} onSpotFilter={this.onSpotFilter} />
         </section>
       </section>
     );

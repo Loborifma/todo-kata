@@ -1,25 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import './NewTaskForm.css';
 
 export default class NewTaskForm extends React.Component {
-
   static defaultProps = {
-    onSubmit: () => {}
-  }
+    onSubmit: () => {},
+  };
 
   static propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
   };
 
   state = {
-    description: ""
+    description: '',
   };
 
   onDescriptionChange = (evt) => {
     this.setState({
-      description: evt.target.value
+      description: evt.target.value,
     });
   };
 
@@ -27,28 +26,27 @@ export default class NewTaskForm extends React.Component {
     evt.preventDefault();
     this.props.onSubmit(this.state.description);
     this.setState({
-      description: ""
+      description: '',
     });
   };
 
-  render(){
-
+  render() {
     return (
-      <form 
+      <form
         className="header"
         onSubmit={(evt) => {
-          this.onSubmit(evt)
-        }}>
+          this.onSubmit(evt);
+        }}
+      >
         <h1>todos</h1>
-        <input 
-          className="new-todo" 
-          placeholder="What needs to be done?" 
+        <input
+          className="new-todo"
+          placeholder="What needs to be done?"
           value={this.state.description}
           onChange={this.onDescriptionChange}
-          autoFocus 
-          />
+          autoFocus
+        />
       </form>
-    );    
-  };
+    );
+  }
 }
-

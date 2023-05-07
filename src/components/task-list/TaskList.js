@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Task from "../task/Task";
-import "./TaskList.css";
+import Task from '../task/Task';
+import './TaskList.css';
 
 export default class TaskList extends React.Component {
   static defaultProps = {
@@ -22,13 +22,7 @@ export default class TaskList extends React.Component {
   };
 
   render() {
-    const {
-      onDeleteItem,
-      onToggleStatus,
-      onToggleEditing,
-      onEditingItem,
-      tasks,
-    } = this.props;
+    const { onDeleteItem, onToggleStatus, onToggleEditing, onEditingItem, tasks } = this.props;
 
     return (
       <ul className="todo-list">
@@ -37,12 +31,12 @@ export default class TaskList extends React.Component {
 
           return (
             <Task
-              key={el.id}
+              key={id}
               {...anotherProps}
-              onDeleteItem={() => onDeleteItem(el.id)}
-              onToggleStatus={() => onToggleStatus(el.id)}
-              onToggleEditing={() => onToggleEditing(el.id)}
-              onEditingItem={(e) => onEditingItem(e, el.id)}
+              onDeleteItem={() => onDeleteItem(id)}
+              onToggleStatus={() => onToggleStatus(id)}
+              onToggleEditing={() => onToggleEditing(id)}
+              onEditingItem={(e) => onEditingItem(e, id)}
             />
           );
         })}

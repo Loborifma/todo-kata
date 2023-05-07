@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import TasksFilter from "../tasks-filter/TasksFilter";
+import TasksFilter from '../tasks-filter/TasksFilter';
 
-import "./Footer.css";
+import './Footer.css';
 
 const Footer = ({ active, onClearCompleted, onSpotFilter }) => {
   return (
