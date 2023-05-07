@@ -1,0 +1,4 @@
+{
+  "*.{js,jsx}": "npx eslint",
+  "*.{js,jsx,html,css}": "npx prettier --check"
+}
