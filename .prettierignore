@@ -1,0 +1,9 @@
+.vercel/
+.vscode/
+node_modules/
+build/
+.eslintrc
+.prettierrc
+*.json
+*.css
+*.md

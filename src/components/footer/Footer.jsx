@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TasksFilter from '../tasks-filter/TasksFilter';
+import TasksFilter from '../TasksFilter/TasksFilter';
 
 import './Footer.css';
 
@@ -10,7 +10,7 @@ const Footer = ({ active, onClearCompleted, onSpotFilter }) => {
     <footer className="footer">
       <span className="todo-count">{active} items left</span>
       <TasksFilter onSpotFilter={(e) => onSpotFilter(e)} />
-      <button className="clear-completed" onClick={onClearCompleted}>
+      <button className="clear-completed" onClick={onClearCompleted} type="button">
         Clear completed
       </button>
     </footer>

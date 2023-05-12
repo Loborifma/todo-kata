@@ -15,8 +15,13 @@ export default class Task extends React.Component {
     editing: PropTypes.bool.isRequired,
   };
 
+  handleDescriptionClick = () => {
+    const { id, onToggleStatus } = this.props;
+    onToggleStatus(id);
+  };
+
   render() {
-    const { description, onDeleteItem, onToggleStatus, onToggleEditing, onEditingItem, status, editing } = this.props;
+    const { description, onDeleteItem, onToggleEditing, onEditingItem, status, editing } = this.props;
 
     let isDone = status ? 'completed' : '';
 
@@ -31,7 +36,7 @@ export default class Task extends React.Component {
             onToggleEditing();
           }}
         >
-          <input type="text" className="edit" value={description} onChange={onEditingItem} />
+          <input type="text" className="edit" value={description} onChange={onEditingItem} autoFocus />
         </form>
       );
     }
@@ -39,13 +44,13 @@ export default class Task extends React.Component {
     return (
       <li className={isDone}>
         <div className="view">
-          <input className="toggle" type="checkbox" checked={status} onChange={onToggleStatus} />
-          <label>
+          <input className="toggle" type="checkbox" checked={status} onChange={this.handleDescriptionClick} />
+          <label onClick={this.handleDescriptionClick}>
             <span className="description">{description}</span>
             <span className="created">{formatDistanceToNow(new Date())}</span>
           </label>
-          <button className="icon icon-edit" onClick={onToggleEditing}></button>
-          <button className="icon icon-destroy" onClick={onDeleteItem}></button>
+          <button className="icon icon-edit" onClick={onToggleEditing} type="button" title="Editing"></button>
+          <button className="icon icon-destroy" onClick={onDeleteItem} type="button" title="Delete"></button>
         </div>
         {isEditing}
       </li>

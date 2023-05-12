@@ -28,10 +28,9 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{js,jsx}": [
       "npm run lint:fix",
-      "npm run format",
-      "git add"
+      "npm run format"
     ]
   },
   "browserslist": {

@@ -24,10 +24,12 @@ export default class NewTaskForm extends React.Component {
 
   onSubmit = (evt) => {
     evt.preventDefault();
-    this.props.onSubmit(this.state.description);
-    this.setState({
-      description: '',
-    });
+    if (this.state.description) {
+      this.props.onSubmit(this.state.description);
+      this.setState({
+        description: '',
+      });
+    }
   };
 
   render() {

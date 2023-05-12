@@ -22,17 +22,17 @@ export default class TasksFilter extends React.Component {
     return (
       <ul className="filters" onClickCapture={this.clearClasses}>
         <li>
-          <button className="selected" onClick={onSpotFilter}>
+          <button className="selected" onClick={onSpotFilter} type="button">
             All
           </button>
         </li>
         <li>
-          <button className="" onClick={onSpotFilter}>
+          <button className="" onClick={onSpotFilter} type="button">
             Active
           </button>
         </li>
         <li>
-          <button className="" onClick={onSpotFilter}>
+          <button className="" onClick={onSpotFilter} type="button">
             Completed
           </button>
         </li>

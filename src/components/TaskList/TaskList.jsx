@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Task from '../task/Task';
+import Task from '../Task/Task';
 import './TaskList.css';
 
 export default class TaskList extends React.Component {
@@ -27,16 +27,14 @@ export default class TaskList extends React.Component {
     return (
       <ul className="todo-list">
         {tasks.map((el) => {
-          const { id, ...anotherProps } = el;
-
           return (
             <Task
-              key={id}
-              {...anotherProps}
-              onDeleteItem={() => onDeleteItem(id)}
-              onToggleStatus={() => onToggleStatus(id)}
-              onToggleEditing={() => onToggleEditing(id)}
-              onEditingItem={(e) => onEditingItem(e, id)}
+              key={el.id}
+              {...el}
+              onDeleteItem={() => onDeleteItem(el.id)}
+              onToggleStatus={() => onToggleStatus(el.id)}
+              onToggleEditing={() => onToggleEditing(el.id)}
+              onEditingItem={(e) => onEditingItem(e, el.id)}
             />
           );
         })}
