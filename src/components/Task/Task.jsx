@@ -20,6 +20,14 @@ export default class Task extends React.Component {
     interval: '',
   };
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.status !== this.props.status) {
+      if (this.props.status) {
+        this.onClickPause();
+      }
+    }
+  }
+
   componentWillUnmount() {
     this.onClickPause();
   }
@@ -76,10 +84,6 @@ export default class Task extends React.Component {
     let isDone = status ? 'completed' : '';
 
     let isEditing = null;
-
-    if (isDone === 'completed') {
-      this.onClickPause();
-    }
 
     if (editing && !status) {
       isDone = 'editing';
