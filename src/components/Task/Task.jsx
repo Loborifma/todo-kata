@@ -77,6 +77,10 @@ export default class Task extends React.Component {
 
     let isEditing = null;
 
+    if (isDone === 'completed') {
+      this.onClickPause();
+    }
+
     if (editing && !status) {
       isDone = 'editing';
       isEditing = (
