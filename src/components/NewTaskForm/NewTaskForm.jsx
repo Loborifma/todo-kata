@@ -25,16 +25,25 @@ export default class NewTaskForm extends React.Component {
   };
 
   handelMinutesChange = (evt) => {
-    const res = evt.target.value;
+    const value = evt.target.value;
+    const res = value >= 0 ? value : '';
     this.setState({
-      min: res >= 0 ? res : '',
+      min: res,
     });
   };
 
   handelSecondsChange = (evt) => {
-    const res = evt.target.value;
+    const value = evt.target.value;
+    let res;
+
+    if (value >= 0) {
+      res = value > 60 ? 60 : value;
+    } else {
+      res = '';
+    }
+
     this.setState({
-      sec: res >= 0 ? res : '',
+      sec: res,
     });
   };
 
@@ -77,7 +86,7 @@ export default class NewTaskForm extends React.Component {
           value={this.state.sec}
           onChange={this.handelSecondsChange}
         />
-        <input type="submit" hidden />
+        <button type="submit" hidden />
       </form>
     );
   }
