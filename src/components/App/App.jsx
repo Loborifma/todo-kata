@@ -14,10 +14,11 @@ export default class App extends React.Component {
     filter: 'All',
   };
 
-  createListItem(description) {
+  createListItem(description, milliSec) {
     return {
       id: this.maxId++,
       description: description,
+      time: milliSec,
       status: false,
       editing: false,
     };
@@ -49,12 +50,21 @@ export default class App extends React.Component {
     }
   };
 
-  onAddItem = (description) => {
-    const newItem = this.createListItem(description);
+  onAddItem = (description, min, sec) => {
+    const milliSec = min * 60 * 1000 + sec * 1000;
+    const newItem = this.createListItem(description, milliSec);
     this.setState(({ tasks }) => {
       const newArr = [...tasks, newItem];
       return {
         tasks: newArr,
+      };
+    });
+  };
+
+  onChangeTime = (time, id) => {
+    this.setState(({ tasks }) => {
+      return {
+        tasks: this.changeProperty(tasks, id, 'time', false, time),
       };
     });
   };
@@ -118,7 +128,10 @@ export default class App extends React.Component {
 
     return (
       <section className="todoapp">
-        <NewTaskForm onSubmit={this.onAddItem} />
+        <header className="header">
+          <h1>todos</h1>
+          <NewTaskForm onSubmit={this.onAddItem} />
+        </header>
         <section className="main">
           <TaskList
             tasks={filteredTasks}
@@ -126,6 +139,7 @@ export default class App extends React.Component {
             onToggleStatus={this.onToggleStatus}
             onToggleEditing={this.onToggleEditing}
             onEditingItem={this.onEditingItem}
+            onChangeTime={this.onChangeTime}
           />
           <Footer active={activeCount} onClearCompleted={this.onClearCompleted} onSpotFilter={this.onSpotFilter} />
         </section>

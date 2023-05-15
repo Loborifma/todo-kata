@@ -22,7 +22,7 @@ export default class TaskList extends React.Component {
   };
 
   render() {
-    const { onDeleteItem, onToggleStatus, onToggleEditing, onEditingItem, tasks } = this.props;
+    const { onDeleteItem, onToggleStatus, onToggleEditing, onEditingItem, onChangeTime, tasks } = this.props;
 
     return (
       <ul className="todo-list">
@@ -35,6 +35,7 @@ export default class TaskList extends React.Component {
               onToggleStatus={() => onToggleStatus(el.id)}
               onToggleEditing={() => onToggleEditing(el.id)}
               onEditingItem={(e) => onEditingItem(e, el.id)}
+              onChangeTime={onChangeTime}
             />
           );
         })}
