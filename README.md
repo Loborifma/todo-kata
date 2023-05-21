@@ -1,2 +1,2 @@
-[Развернутый сайт](https://todo-kata-git-tasktimer-loborifma.vercel.app/)
+[Развернутый сайт](https://todo-kata-git-hooks-loborifma.vercel.app/)
 
