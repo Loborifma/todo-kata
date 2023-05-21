@@ -1,93 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './NewTaskForm.css';
 
-export default class NewTaskForm extends React.Component {
-  static defaultProps = {
-    onSubmit: () => {},
+export const NewTaskForm = ({ onSubmit }) => {
+  const [description, setDescription] = useState('');
+  const [min, setMin] = useState('');
+  const [sec, setSec] = useState('');
+
+  const handelDescriptionChange = (evt) => {
+    setDescription(evt.target.value);
   };
 
-  static propTypes = {
-    onSubmit: PropTypes.func,
-  };
-
-  state = {
-    description: '',
-    min: '',
-    sec: '',
-  };
-
-  handelDescriptionChange = (evt) => {
-    this.setState({
-      description: evt.target.value,
-    });
-  };
-
-  handelMinutesChange = (evt) => {
+  const handelMinutesChange = (evt) => {
     const value = evt.target.value;
     const res = value >= 0 ? value : '';
-    this.setState({
-      min: res,
-    });
+    setMin(res);
   };
 
-  handelSecondsChange = (evt) => {
+  const handelSecondsChange = (evt) => {
     const value = evt.target.value;
     let res;
 
-    if (value >= 0) {
+    if (value > 0) {
       res = value > 60 ? 60 : value;
     } else {
       res = '';
     }
 
-    this.setState({
-      sec: res,
-    });
+    setSec(res);
   };
 
-  handelSubmit = (evt) => {
+  const handelSubmit = (evt) => {
     evt.preventDefault();
 
-    const { description, min, sec } = this.state;
     if (description && min && sec) {
-      this.props.onSubmit(description, min, sec);
-      this.setState({
-        description: '',
-        min: '',
-        sec: '',
-      });
+      onSubmit(description, min, sec);
+      setDescription('');
+      setMin('');
+      setSec('');
     }
   };
 
-  render() {
-    return (
-      <form className="new-todo-form" onSubmit={this.handelSubmit}>
-        <input
-          className="new-todo"
-          placeholder="What needs to be done?"
-          required
-          value={this.state.description}
-          onChange={this.handelDescriptionChange}
-          autoFocus
-        />
-        <input
-          className="new-todo-form__timer"
-          placeholder="Min"
-          required
-          value={this.state.min}
-          onChange={this.handelMinutesChange}
-        />
-        <input
-          className="new-todo-form__timer"
-          placeholder="Sec"
-          required
-          value={this.state.sec}
-          onChange={this.handelSecondsChange}
-        />
-        <button type="submit" hidden />
-      </form>
-    );
-  }
-}
+  return (
+    <form className="new-todo-form" onSubmit={handelSubmit}>
+      <input
+        className="new-todo"
+        placeholder="What needs to be done?"
+        required
+        value={description}
+        onChange={handelDescriptionChange}
+        autoFocus
+      />
+      <input className="new-todo-form__timer" placeholder="Min" required value={min} onChange={handelMinutesChange} />
+      <input className="new-todo-form__timer" placeholder="Sec" required value={sec} onChange={handelSecondsChange} />
+      <button type="submit" hidden />
+    </form>
+  );
+};
+
+NewTaskForm.defaultProps = {
+  onSubmit: () => {},
+};
+
+NewTaskForm.propTypes = {
+  onSubmit: PropTypes.func,
+};

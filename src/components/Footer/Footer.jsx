@@ -5,7 +5,7 @@ import TasksFilter from '../TasksFilter';
 
 import './Footer.css';
 
-const Footer = ({ active, onClearCompleted, onSpotFilter }) => {
+export const Footer = ({ active, onClearCompleted, onSpotFilter }) => {
   return (
     <footer className="footer">
       <span className="todo-count">{active} items left</span>
@@ -17,16 +17,8 @@ const Footer = ({ active, onClearCompleted, onSpotFilter }) => {
   );
 };
 
-Footer.defaultProps = {
-  active: 0,
-  onClearCompleted: () => {},
-  onSpotFilter: () => {},
-};
-
 Footer.propTypes = {
   active: PropTypes.number.isRequired,
   onClearCompleted: PropTypes.func.isRequired,
   onSpotFilter: PropTypes.func.isRequired,
 };
-
-export default Footer;
