@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import './TasksFilter.css';
 
 export const TasksFilter = ({ onSpotFilter }) => {
-  const clearClasses = (e) => {
-    const parent = e.target.parentNode.parentNode;
+  const parentRef = useRef(null);
 
-    Array.from(parent.children).forEach((e) => {
-      const child = e.firstElementChild;
+  const clearClasses = () => {
+    const parent = parentRef.current;
+
+    Array.from(parent.children).forEach((element) => {
+      const child = element.firstElementChild;
       if (child) {
         child.classList.remove('selected');
       }
@@ -16,7 +18,7 @@ export const TasksFilter = ({ onSpotFilter }) => {
   };
 
   return (
-    <ul className="filters" onClickCapture={clearClasses}>
+    <ul className="filters" ref={parentRef} onClickCapture={clearClasses}>
       <li>
         <button className="selected" onClick={onSpotFilter} type="button">
           All
